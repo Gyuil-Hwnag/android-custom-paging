@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import camp.nextstep.edu.github.R
 import camp.nextstep.edu.github.databinding.ItemRepositoryBinding
-import com.nextstep.edu.domain.model.Repository
+import com.nextstep.edu.domain.model.Photo
 
-class RepositoryAdapter : ListAdapter<Repository, RepositoryAdapter.ViewHolder>(
+class RepositoryAdapter : ListAdapter<Photo, RepositoryAdapter.ViewHolder>(
     RepositoryDiffCallback
 ) {
 
@@ -35,16 +35,16 @@ class RepositoryAdapter : ListAdapter<Repository, RepositoryAdapter.ViewHolder>(
     class ViewHolder(private val binding: ItemRepositoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Repository) {
+        fun bind(item: Photo) {
             binding.model = item
         }
     }
 
-    internal object RepositoryDiffCallback : DiffUtil.ItemCallback<Repository>() {
-        override fun areItemsTheSame(oldItem: Repository, newItem: Repository) =
+    internal object RepositoryDiffCallback : DiffUtil.ItemCallback<Photo>() {
+        override fun areItemsTheSame(oldItem: Photo, newItem: Photo) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Repository, newItem: Repository) =
+        override fun areContentsTheSame(oldItem: Photo, newItem: Photo) =
             oldItem == newItem
     }
 }

@@ -1,7 +1,7 @@
 package com.nextstep.edu.domain
 
 import com.google.common.truth.Truth.assertThat
-import com.nextstep.edu.domain.model.Repository
+import com.nextstep.edu.domain.model.Photo
 import com.nextstep.edu.domain.repository.RemoteRepository
 import com.nextstep.edu.domain.usecase.GetRepositoryUseCase
 import io.mockk.coEvery
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetRepositoryUseCaseTest {
+class GetPhotoUseCaseTest {
 
     private lateinit var getRepositoryUseCase: GetRepositoryUseCase
     private val testDispatcher = StandardTestDispatcher()
@@ -38,7 +38,7 @@ class GetRepositoryUseCaseTest {
             .onSuccess {
                 // then : 결과는 빈리스트 이다.
                 val actual = it
-                assertThat(actual).isEqualTo(emptyList<Repository>())
+                assertThat(actual).isEqualTo(emptyList<Photo>())
             }
     }
 
@@ -47,7 +47,7 @@ class GetRepositoryUseCaseTest {
         // given : getRepositoryUseCase()의 결과 설정
         coEvery {
             getRepositoryUseCase()
-        } returns Result.success(listOf(Repository(id = 0, fullName = "Hwang-Gyuil", description = "hi")))
+        } returns Result.success(listOf(Photo(id = 0, fullName = "Hwang-Gyuil", description = "hi")))
 
         // when : getRepositoryUseCase() 메서드 실행
         getRepositoryUseCase()
@@ -65,8 +65,8 @@ class GetRepositoryUseCaseTest {
             getRepositoryUseCase()
         } returns Result.success(
             listOf(
-                Repository(id = 0, fullName = "Hwang-Gyuil", description = "hi"),
-                Repository(id = 0, fullName = "duru.hi", description = "hihi")
+                Photo(id = 0, fullName = "Hwang-Gyuil", description = "hi"),
+                Photo(id = 0, fullName = "duru.hi", description = "hihi")
             )
         )
 

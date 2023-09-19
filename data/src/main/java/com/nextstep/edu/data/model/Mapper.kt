@@ -1,16 +1,16 @@
 package com.nextstep.edu.data.model
 
-import com.nextstep.edu.domain.model.Repository
+import com.nextstep.edu.domain.model.Photo
 
-internal fun RepositoryResponse.toDomain(): Repository {
-    return Repository(
+internal fun PhotoResponse.toDomain(): Photo {
+    return Photo(
         id = this.id,
-        fullName = this.fullName ?: "",
-        description = this.description ?: ""
+        author = this.author ?: "",
+        url = url ?: ""
     )
 }
 
-internal fun List<RepositoryResponse>.toDomain(): List<Repository> {
+internal fun List<PhotoResponse>.toDomain(): List<Photo> {
     return this.map { data ->
         data.toDomain()
     }

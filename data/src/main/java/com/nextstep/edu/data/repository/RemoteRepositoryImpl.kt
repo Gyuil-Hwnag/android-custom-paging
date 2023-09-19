@@ -10,7 +10,7 @@ internal class RemoteRepositoryImpl @Inject constructor(
     private val githubService: GithubService
 ): RemoteRepository {
 
-    override suspend fun getRepositories(): List<Photo> {
-        return githubService.getRepositories().toDomain()
+    override suspend fun getPhotos(page: Int, limit: Int): List<Photo> {
+        return githubService.getRepositories(page, limit).toDomain()
     }
 }

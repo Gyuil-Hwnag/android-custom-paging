@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetRepositoryUseCase @Inject constructor(
     private val repository: RemoteRepository
 ) {
-    suspend operator fun invoke(): Result<List<Photo>> {
-        return runCatching { repository.getRepositories() }
+    suspend operator fun invoke(page: Int, limit: Int): Result<List<Photo>> {
+        return runCatching { repository.getPhotos(page, limit) }
     }
 }

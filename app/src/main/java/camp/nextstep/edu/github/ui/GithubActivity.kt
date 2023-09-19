@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import camp.nextstep.edu.github.R
 import camp.nextstep.edu.github.databinding.ActivityGithubBinding
+import camp.nextstep.edu.github.util.addOnPagingListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +36,9 @@ class GithubActivity : AppCompatActivity() {
 
     private fun initAdapter() {
         binding.recyclerView.adapter = repositoryAdapter
+        binding.recyclerView.addOnPagingListener(
+            arrivedBottom = { viewModel.nextPage() }
+        )
     }
 
     private fun observeRepositories() {

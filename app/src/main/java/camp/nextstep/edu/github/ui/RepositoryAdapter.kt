@@ -14,8 +14,6 @@ class RepositoryAdapter : ListAdapter<Photo, RepositoryAdapter.ViewHolder>(
     RepositoryDiffCallback
 ) {
 
-    init { setHasStableIds(true) }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewDataBinding: ItemRepositoryBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),

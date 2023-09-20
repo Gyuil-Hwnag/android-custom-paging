@@ -9,7 +9,7 @@ fun RecyclerView.addOnPagingListener(
     recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            if (scrollPercent(recyclerView) > 95 && dy > 0) {
+            if (scrollPercent(recyclerView) >= 100) {
                 arrivedBottom()
                 return
             }
@@ -22,3 +22,4 @@ fun scrollPercent(recyclerView: RecyclerView): Double {
 }
 
 const val PAGE_SIZE = 20
+const val INIT_PAGE = 0

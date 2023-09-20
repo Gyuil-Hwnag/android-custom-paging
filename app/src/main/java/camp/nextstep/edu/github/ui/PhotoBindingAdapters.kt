@@ -9,6 +9,7 @@ fun bindShowImage(imageView: ImageView, url: String?) {
     url?.let {
         Glide.with(imageView.context)
             .load(url)
+            .centerCrop()
             .into(imageView)
     }
 }

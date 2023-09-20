@@ -1,5 +1,6 @@
 package com.nextstep.edu.data.model
 
+import com.nextstep.edu.domain.model.Contents
 import com.nextstep.edu.domain.model.Photo
 
 internal fun PhotoResponse.toDomain(): Photo {
@@ -11,8 +12,11 @@ internal fun PhotoResponse.toDomain(): Photo {
     )
 }
 
-internal fun List<PhotoResponse>.toDomain(): List<Photo> {
-    return this.map { data ->
-        data.toDomain()
-    }
+internal fun List<PhotoResponse>.toDomain(): Contents<Photo> {
+    return Contents(
+        page = 0,
+        pageSize = 0,
+        hasNext = false,
+        content = this.map { it.toDomain() }
+    )
 }

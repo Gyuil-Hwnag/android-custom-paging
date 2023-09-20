@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import camp.nextstep.edu.github.util.INIT_PAGE
 import camp.nextstep.edu.github.util.PAGE_SIZE
 import camp.nextstep.edu.github.util.SingleLiveEvent
+import com.nextstep.edu.domain.model.Contents
 import com.nextstep.edu.domain.model.Photo
 import com.nextstep.edu.domain.usecase.GetPhotosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,16 +22,15 @@ class PhotoViewModel @Inject constructor(
     private val _errorEvent: SingleLiveEvent<Unit> = SingleLiveEvent()
     val errorEvent: LiveData<Unit> = _errorEvent
 
-    private val _repositories: MutableLiveData<List<Photo>> = MutableLiveData()
-    val repositories: LiveData<List<Photo>> = _repositories
+    private val _photos: MutableLiveData<Contents<Photo>> = MutableLiveData()
+    val photos: LiveData<Contents<Photo>> = _photos
 
-    private var page: Int = 0
 
     fun getPhotos() {
         viewModelScope.launch {
-            getPhotosUseCase(page, PAGE_SIZE)
+            getPhotosUseCase(INIT_PAGE, PAGE_SIZE)
                 .onSuccess {
-                    _repositories.value = it
+                    _photos.value = it
                 }
                 .onFailure { _errorEvent.value = Unit }
         }
@@ -37,11 +38,12 @@ class PhotoViewModel @Inject constructor(
 
     fun nextPage() {
         viewModelScope.launch {
-            page += 1
-            getPhotosUseCase(page, PAGE_SIZE)
+            if (photos.value?.hasNext == false) return@launch
+
+            getPhotosUseCase((photos.value?.page ?: 0) + 1, PAGE_SIZE)
                 .onSuccess {
-                    val newList = (repositories.value?.toMutableList() ?: emptyList()) + it
-                    _repositories.value = newList
+                    it.content = (photos.value?.content?.toMutableList() ?: emptyList()) + it.content
+                    _photos.value = it
                 }
                 .onFailure { _errorEvent.value = Unit }
         }

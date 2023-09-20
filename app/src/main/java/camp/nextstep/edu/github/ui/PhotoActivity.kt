@@ -42,8 +42,8 @@ class PhotoActivity : AppCompatActivity() {
     }
 
     private fun observeRepositories() {
-        viewModel.repositories.observe(this) {
-            photoAdapter.submitList(it)
+        viewModel.photos.observe(this) {
+            photoAdapter.submitList(it.content)
         }
     }
 

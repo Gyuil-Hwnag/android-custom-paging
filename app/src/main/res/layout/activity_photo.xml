@@ -7,13 +7,13 @@
 
         <variable
             name="viewmodel"
-            type="camp.nextstep.edu.github.ui.GithubViewModel" />
+            type="camp.nextstep.edu.github.ui.PhotoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.GithubActivity">
+        tools:context=".ui.PhotoActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_repository" />
+            tools:listitem="@layout/item_photo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

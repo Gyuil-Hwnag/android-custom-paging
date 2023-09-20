@@ -4,7 +4,7 @@ import com.nextstep.edu.data.model.PhotoResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-internal interface GithubService {
+internal interface PhotoService {
 
     /**
      * gitRepository 리스트 가져오기

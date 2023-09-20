@@ -1,20 +1,20 @@
 package camp.nextstep.edu.github.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import camp.nextstep.edu.github.R
-import camp.nextstep.edu.github.databinding.ActivityGithubBinding
+import camp.nextstep.edu.github.databinding.ActivityPhotoBinding
 import camp.nextstep.edu.github.util.addOnPagingListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GithubActivity : AppCompatActivity() {
+class PhotoActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityGithubBinding
-    private val viewModel: GithubViewModel by viewModels()
-    private val repositoryAdapter by lazy { RepositoryAdapter() }
+    private lateinit var binding: ActivityPhotoBinding
+    private val viewModel: PhotoViewModel by viewModels()
+    private val photoAdapter by lazy { PhotoAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,19 +23,19 @@ class GithubActivity : AppCompatActivity() {
         observeRepositories()
         observeError()
 
-        viewModel.getRepositories()
+        viewModel.getPhotos()
     }
 
     private fun initDataBinding() {
-        binding = ActivityGithubBinding.inflate(layoutInflater).apply {
+        binding = ActivityPhotoBinding.inflate(layoutInflater).apply {
             viewmodel = viewModel
-            lifecycleOwner = this@GithubActivity
+            lifecycleOwner = this@PhotoActivity
         }
         setContentView(binding.root)
     }
 
     private fun initAdapter() {
-        binding.recyclerView.adapter = repositoryAdapter
+        binding.recyclerView.adapter = photoAdapter
         binding.recyclerView.addOnPagingListener(
             arrivedBottom = { viewModel.nextPage() }
         )
@@ -43,7 +43,7 @@ class GithubActivity : AppCompatActivity() {
 
     private fun observeRepositories() {
         viewModel.repositories.observe(this) {
-            repositoryAdapter.submitList(it)
+            photoAdapter.submitList(it)
         }
     }
 

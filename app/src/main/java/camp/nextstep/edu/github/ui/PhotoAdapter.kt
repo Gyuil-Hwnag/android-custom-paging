@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import camp.nextstep.edu.github.R
-import camp.nextstep.edu.github.databinding.ItemRepositoryBinding
+import camp.nextstep.edu.github.databinding.ItemPhotoBinding
 import com.nextstep.edu.domain.model.Photo
 
-class RepositoryAdapter : ListAdapter<Photo, RepositoryAdapter.ViewHolder>(
+class PhotoAdapter : ListAdapter<Photo, PhotoAdapter.ViewHolder>(
     RepositoryDiffCallback
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val viewDataBinding: ItemRepositoryBinding = DataBindingUtil.inflate(
+        val viewDataBinding: ItemPhotoBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_repository,
+            R.layout.item_photo,
             parent,
             false
         )
@@ -28,9 +28,9 @@ class RepositoryAdapter : ListAdapter<Photo, RepositoryAdapter.ViewHolder>(
         holder.bind(getItem(position))
     }
 
-    override fun getItemViewType(position: Int): Int = R.layout.item_repository
+    override fun getItemViewType(position: Int): Int = R.layout.item_photo
 
-    class ViewHolder(private val binding: ItemRepositoryBinding) :
+    class ViewHolder(private val binding: ItemPhotoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Photo) {

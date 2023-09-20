@@ -1,7 +1,7 @@
 package com.nextstep.edu.data.di
 
 import com.nextstep.edu.data.ApiClient
-import com.nextstep.edu.data.GithubService
+import com.nextstep.edu.data.PhotoService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,5 +33,5 @@ internal class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideGithubService(retrofit: Retrofit): GithubService = retrofit.create(GithubService::class.java)
+    fun provideGithubService(retrofit: Retrofit): PhotoService = retrofit.create(PhotoService::class.java)
 }

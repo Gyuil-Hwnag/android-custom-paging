@@ -83,4 +83,7 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:${Version.hilt}")
     testImplementation("com.google.dagger:hilt-android-testing:${Version.hilt}")
     kaptTest("com.google.dagger:hilt-android-compiler:${Version.hilt}")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.11.0")
 }

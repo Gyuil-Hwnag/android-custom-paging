@@ -6,7 +6,8 @@ internal fun PhotoResponse.toDomain(): Photo {
     return Photo(
         id = this.id,
         author = this.author ?: "",
-        url = url ?: ""
+        url = this.url ?: "",
+        downloadUrl = this.downloadUrl
     )
 }
 

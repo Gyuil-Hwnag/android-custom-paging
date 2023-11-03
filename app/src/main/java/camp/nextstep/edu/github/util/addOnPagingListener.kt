@@ -12,8 +12,8 @@ fun RecyclerView.addOnPagingListener(
             super.onScrolled(recyclerView, dx, dy)
 
             val layoutManager = (recyclerView.layoutManager as LinearLayoutManager)
-            val firstVisibleItemIndex = layoutManager.findFirstVisibleItemPosition()
-            if (firstVisibleItemIndex == (layoutManager.itemCount - NEXT_PAGE_TRIGGER)) {
+            val lastVisibleITem = layoutManager.findFirstVisibleItemPosition()
+            if (lastVisibleITem == (layoutManager.itemCount)) {
                 arrivedBottom()
                 return
             }
